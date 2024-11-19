@@ -17,8 +17,9 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 	method := c.Method()
 	path := c.Path()
 	body := c.Body()
+	ip := c.IP()
 
-	log.Printf("Received Request : %s %s", method, path)
+	log.Printf("Received Request :[ %s ] %s %s", ip, method, path)
 
 	client := &http.Client{
 		Timeout: 500 * time.Second,
@@ -41,7 +42,7 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 			req.Header.Set(string(key), string(value))
 		}
 	})
-	log.Println(req.Header)
+
 	req.Header.Set("X-Gateway-Key", "6F1ED002AB5595859014EBF0951522D9")
 	req.Header.Set("Content-Type", "application/json")
 
