@@ -36,7 +36,10 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 	}
 
 	c.Request().Header.VisitAll(func(key, value []byte) {
-		req.Header.Set(string(key), string(value))
+		headerName := string(key)
+		if headerName != "Accept-Encoding" {
+			req.Header.Set(string(key), string(value))
+		}
 	})
 	log.Println(req.Header)
 	req.Header.Set("X-Gateway-Key", "6F1ED002AB5595859014EBF0951522D9")
