@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -19,7 +20,9 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 
 	log.Printf("Received Request : %s %s", method, path)
 
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: 500 * time.Second,
+	}
 	req, err := http.NewRequest(
 		method,
 		"https://streambe01.indonesia.us.kg"+path,
@@ -60,6 +63,7 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 
 	var jsonResponse map[string]interface{}
 	if err := json.Unmarshal(responseBody, &jsonResponse); err != nil {
+		log.Println(jsonResponse)
 		log.Printf("error Unmarshal: %v", err)
 		log.Printf("Response Error: %s", resp.StatusCode)
 
