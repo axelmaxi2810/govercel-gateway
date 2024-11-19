@@ -17,7 +17,7 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 	method := c.Method()
 	path := c.Path()
 	body := c.Body()
-	ip := c.IP()
+	ip := c.Get("Cf-Connecting-Ip")
 
 	log.Printf("Received Request :[ %s ] %s %s", ip, method, path)
 

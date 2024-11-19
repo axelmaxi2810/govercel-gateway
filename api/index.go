@@ -45,7 +45,11 @@ func handler() http.HandlerFunc {
 		Max:        5,
 		Expiration: 1 * time.Second,
 		KeyGenerator: func(c *fiber.Ctx) string {
-			return c.IP()
+			ip := c.Get("Cf-Connecting-Ip")
+			if ip == "" {
+				ip = c.IP()
+			}
+			return ip
 		},
 		LimitReached: func(c *fiber.Ctx) error {
 			log.Printf(c.IP(), " Has Reach the limit")
