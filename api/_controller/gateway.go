@@ -46,6 +46,8 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 	req.Header.Set("X-Gateway-Key", "6F1ED002AB5595859014EBF0951522D9")
 	req.Header.Set("Content-Type", "application/json")
 
+	log.Println(req.Header)
+
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Printf("error: %v", err)
