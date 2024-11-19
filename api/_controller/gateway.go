@@ -60,6 +60,7 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 
 	var jsonResponse map[string]interface{}
 	if err := json.Unmarshal(responseBody, &jsonResponse); err != nil {
+		log.Printf("error Unmarshal: %v", err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"status":  fiber.StatusInternalServerError,
 			"message": "ERROR_JSON_RESPONSE",
