@@ -37,7 +37,7 @@ func handler() http.HandlerFunc {
 	// Panic Handler
 	app.Use(recover.New())
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "https://*.micinproject.de, https://*.bandung.my.id",
+		AllowOrigins: "https://*.micinproject.de, https://*.bandung.my.id, http://localhost:3000",
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 
