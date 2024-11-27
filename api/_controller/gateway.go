@@ -18,7 +18,10 @@ var backends = []struct {
 }{
 	{"https://streambe01.indonesia.us.kg", "MAWAR"},
 	{"https://partial-maureene-zaxkyu-237ae0c6.koyeb.app", "MELATI"},
-{"https://app-80a2ec7d-b99d-4abc-b771-24bf19f1b0a4.cleverapps.io", "CEMPAKA"}
+	{
+		"https://app-80a2ec7d-b99d-4abc-b771-24bf19f1b0a4.cleverapps.io",
+		"CEMPAKA",
+	},
 }
 
 type GatewayController struct{}
