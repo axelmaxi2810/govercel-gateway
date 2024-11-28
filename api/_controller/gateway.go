@@ -105,11 +105,12 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 	}
 
 	log.Printf(
-		"Response: [%d | %s | %s | %s]",
+		"Response: [%d | %s | %s | %s | %s]",
 		resp.StatusCode,
 		executionTime,
 		backendCode,
 		path,
+		c.Get("User-Agent"),
 	)
 
 	return c.Status(int(resp.StatusCode)).JSON(jsonResponse)
