@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"io"
 	"log"
-	"math/rand"
 	"net/http"
+	"sync"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -26,9 +26,19 @@ var backends = []struct {
 
 type GatewayController struct{}
 
-func getRandomBackend() (string, string) {
-	rand.Seed(time.Now().UnixNano())
-	backend := backends[rand.Intn(len(backends))]
+var (
+	counter int
+	mu      sync.Mutex
+)
+
+func getNextBackend() (string, string) {
+	mu.Lock()
+	defer mu.Unlock()
+
+	backend := backends[counter]
+
+	counter = (counter + 1) % len(backends)
+
 	return backend.URL, backend.Code
 }
 
@@ -45,7 +55,7 @@ func (gc *GatewayController) Index(c *fiber.Ctx) error {
 		Timeout: 500 * time.Second,
 	}
 
-	backendUrl, backendCode := getRandomBackend()
+	backendUrl, backendCode := getNextBackend()
 	url := backendUrl + path
 
 	req, err := http.NewRequest(method, url, bytes.NewReader(body))
