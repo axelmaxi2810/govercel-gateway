@@ -8,6 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/adaptor"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/healthcheck"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 
@@ -40,7 +41,7 @@ func handler() http.HandlerFunc {
 		AllowOrigins: "https://*.micinproject.de, https://*.bandung.my.id, http://localhost:3000",
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
-
+	app.Use(healthcheck.New())
 	app.Use(limiter.New(limiter.Config{
 		Max:        5,
 		Expiration: 1 * time.Second,

@@ -6,6 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/healthcheck"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 
@@ -18,6 +19,7 @@ func main() {
 		AppName: "Authorization Service - Local",
 	})
 
+	app.Use(healthcheck.New())
 	// Initialize routes
 	app.Use(recover.New())
 	app.Use(cors.New(cors.Config{
