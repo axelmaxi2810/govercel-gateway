@@ -22,6 +22,7 @@ var backends = []struct {
 		"https://app-80a2ec7d-b99d-4abc-b771-24bf19f1b0a4.cleverapps.io",
 		"CEMPAKA",
 	},
+	{"https://gobe-483hb9yj.b4a.run", "ALKASIA"},
 }
 
 type GatewayController struct{}
