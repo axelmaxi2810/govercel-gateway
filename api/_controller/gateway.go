@@ -16,10 +16,11 @@ var backends = []struct {
 	URL  string
 	Code string
 }{
-	{"https://streambe01.indonesia.us.kg", "ANGGUR"},
-	{"https://partial-maureene-zaxkyu-237ae0c6.koyeb.app", "BELIMBING"},
-	{"https://app-80a2ec7d-b99d-4abc-b771-24bf19f1b0a4.cleverapps.io", "CERI"},
-	{"https://gobe-483hb9yj.b4a.run", "DELIMA"},
+	// {"https://streambe01.indonesia.us.kg", "ANGGUR"},
+	// {"https://partial-maureene-zaxkyu-237ae0c6.koyeb.app", "BELIMBING"},
+	// {"https://app-80a2ec7d-b99d-4abc-b771-24bf19f1b0a4.cleverapps.io", "CERI"},
+	// {"https://gobe-483hb9yj.b4a.run", "DELIMA"},
+	{"https://micinusa-6v9ky7sk.b4a.run", "USA_TEST"},
 }
 
 type GatewayController struct{}
