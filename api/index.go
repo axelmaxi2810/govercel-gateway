@@ -39,7 +39,7 @@ func handler() http.HandlerFunc {
 	app.Use(recover.New())
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "https://*.micinproject.de, https://*.bandung.my.id, http://localhost:3000",
-		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowHeaders: "Origin, Authorization, Content-Type, Accept",
 	}))
 	app.Use(healthcheck.New())
 	app.Use(limiter.New(limiter.Config{
