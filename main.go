@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
+	"github.com/gofiber/fiber/v2/middleware/monitor"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 
 	route "gogateway/api/_routes"
@@ -39,7 +40,7 @@ func main() {
 			})
 		},
 	}))
-
+	app.Get("/metric", monitor.New())
 	route.RouteInit(app)
 
 	port := ":4040" // Choose your desired local port

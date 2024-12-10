@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/healthcheck"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
+	"github.com/gofiber/fiber/v2/middleware/monitor"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 
 	route "gogateway/api/_routes"
@@ -60,6 +61,8 @@ func handler() http.HandlerFunc {
 			})
 		},
 	}))
+
+	app.Get("/metrics", monitor.New())
 
 	// Initialize routes
 	route.RouteInit(app)
